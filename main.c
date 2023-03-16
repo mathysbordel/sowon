@@ -153,6 +153,7 @@ float parse_time(const char *time)
 
 int main(int argc, char **argv)
 {
+    int ended = 0;
     Mode mode = MODE_ASCENDING;
     float displayed_time = 0.0f;
     int paused = 0;
@@ -331,7 +332,11 @@ int main(int argc, char **argv)
                     displayed_time -= DELTA_TIME;
                 } else {
                     displayed_time = 0.0f;
-                    if (exit_after_countdown) {
+		    if(ended == 0) {
+	                ended = 1;
+			system("notify-send -u critical 'Sowon' 'Timer ended'");
+                    }
+		    if (exit_after_countdown) {
                         SDL_Quit();
                         return 0;
                     }
@@ -346,6 +351,7 @@ int main(int argc, char **argv)
             } break;
             }
         }
+
         // UPDATE END //////////////////////////////
 
         SDL_Delay((int) floorf(DELTA_TIME * 1000.0f));
