@@ -175,6 +175,7 @@ int main(int argc, char **argv)
     Mode mode = MODE_ASCENDING;
     float displayed_time = 0.0f;
     int paused = 0;
+    int result = 0;
     int exit_after_countdown = 0;
 
     for (int i = 1; i < argc; ++i)
@@ -199,7 +200,7 @@ int main(int argc, char **argv)
             int len = strlen(input);
 
             char operator;
-            int num, result;
+            int num;
 
             result = atoi(input);
             for (int y = 0; y < len; y++)
@@ -331,6 +332,7 @@ int main(int argc, char **argv)
                 {
                     displayed_time = 0.0f;
                     paused = 0;
+                    ended = 0;
                     for (int i = 1; i < argc; ++i)
                     {
                         if (strcmp(argv[i], "-p") == 0)
@@ -339,7 +341,7 @@ int main(int argc, char **argv)
                         }
                         else
                         {
-                            displayed_time = parse_time(argv[i]);
+                            displayed_time = result;
                         }
                     }
                     if (paused)
