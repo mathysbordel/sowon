@@ -27,6 +27,9 @@
 #define PAUSE_COLOR_R 220
 #define PAUSE_COLOR_G 120
 #define PAUSE_COLOR_B 120
+#define END_COLOR_R 120
+#define END_COLOR_G 220
+#define END_COLOR_B 120
 #define BACKGROUND_COLOR_R 24
 #define BACKGROUND_COLOR_G 24
 #define BACKGROUND_COLOR_B 24
@@ -394,7 +397,7 @@ int main(int argc, char **argv)
         // RENDER BEGIN //////////////////////////////
         SDL_SetRenderDrawColor(renderer, BACKGROUND_COLOR_R, BACKGROUND_COLOR_G, BACKGROUND_COLOR_B, 255);
         SDL_RenderClear(renderer);
-        if (ended == 0 || frame < 30 * 3)
+        if (!ended || frame < 30 * 3)
         {
             int pen_x, pen_y;
             float fit_scale = 1.0;
@@ -454,8 +457,9 @@ int main(int argc, char **argv)
                 else
                 {
                     displayed_time = 0.0f;
-                    if (ended == 0)
+                    if (!ended)
                     {
+                        secc(SDL_SetTextureColorMod(digits, END_COLOR_R, END_COLOR_G, END_COLOR_B));
                         ended = 1;
                         system("notify-send -u critical 'Sowon' 'Timer ended'");
                     }
