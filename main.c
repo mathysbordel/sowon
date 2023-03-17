@@ -196,7 +196,7 @@ int main(int argc, char **argv)
             int len = strlen(input);
 
             char operator;
-            int num1, num2, result;
+            int num, result;
 
             result = atoi(input);
             for (int y = 0; y < len; y++)
@@ -204,21 +204,21 @@ int main(int argc, char **argv)
                 if (input[y] == '+' || input[y] == '-' || input[y] == '*' || input[y] == '/')
                 {
                     operator= input[y];
-                    num2 = atoi(input + y + 1);
+                    num = atoi(input + y + 1);
 
                     switch (operator)
                     {
                     case '+':
-                        result = result + num2;
+                        result = result + num;
                         break;
                     case '-':
-                        result = result - num2;
+                        result = result - num;
                         break;
                     case '*':
-                        result = (result * num2);
+                        result = (result * num);
                         break;
                     case '/':
-                        result = (result / num2);
+                        result = (result / num);
                         break;
                     default:
                         printf("Invalid operator\n");
