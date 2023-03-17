@@ -191,7 +191,43 @@ int main(int argc, char **argv)
         else
         {
             mode = MODE_COUNTDOWN;
-            displayed_time = parse_time(argv[i]);
+
+            char *input = argv[1];
+            int len = strlen(input);
+
+            char operator;
+            int num1, num2, result;
+
+            result = atoi(input);
+            for (int y = 0; y < len; y++)
+            {
+                if (input[y] == '+' || input[y] == '-' || input[y] == '*' || input[y] == '/')
+                {
+                    operator= input[y];
+                    num2 = atoi(input + y + 1);
+
+                    switch (operator)
+                    {
+                    case '+':
+                        result = result + num2;
+                        break;
+                    case '-':
+                        result = result - num2;
+                        break;
+                    case '*':
+                        result = (result * num2);
+                        break;
+                    case '/':
+                        result = (result / num2);
+                        break;
+                    default:
+                        printf("Invalid operator\n");
+                        return 1;
+                    }
+                }
+            }
+
+            displayed_time = result;
         }
     }
 
